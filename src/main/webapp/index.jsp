@@ -5,7 +5,8 @@
     <title>JSP - Hello World</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
+<%-- ${} is expresion language--%>
+<h1> ${user.userName}
 </h1>
 <br/>
 <a href="hello-servlet">Hello Servlet</a>

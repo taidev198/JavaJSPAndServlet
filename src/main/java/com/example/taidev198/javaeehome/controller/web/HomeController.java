@@ -2,6 +2,7 @@ package com.example.taidev198.javaeehome.controller.web;
 
 import java.io.*;
 
+import com.example.taidev198.javaeehome.model.UserModel;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
@@ -18,6 +19,9 @@ public class HomeController extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
+        UserModel user = new UserModel();
+        user.setUserName("tai");
+        request.setAttribute("user", user);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
         dispatcher.forward(request, response);
 
