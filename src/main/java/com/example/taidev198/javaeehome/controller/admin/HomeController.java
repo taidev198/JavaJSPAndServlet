@@ -1,14 +1,16 @@
-package com.example.taidev198.javaeehome.controller.web;
-
-import java.io.*;
+package com.example.taidev198.javaeehome.controller.admin;
 
 import com.example.taidev198.javaeehome.model.UserModel;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = {"/trang-chu"})
+import java.io.IOException;
+
+@WebServlet(urlPatterns ={ "/admin-home"})
 public class HomeController extends HttpServlet {
     private String message;
 
@@ -22,7 +24,7 @@ public class HomeController extends HttpServlet {
         UserModel user = new UserModel();
         user.setUserName("tai");
         request.setAttribute("user", user);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/web/index.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/admin/index.jsp");
         dispatcher.forward(request, response);
 
 //        // Hello

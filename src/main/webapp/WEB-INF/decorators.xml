@@ -2,7 +2,7 @@
 <decorators defaultdir="/decorators">
 <excludes >
 <!--    <pattern>/404-page.html</pattern>-->
-    <pattern>/api.html</pattern>
+    <pattern>/api*</pattern>
 <!--    <pattern>/dang-nhap.html</pattern>-->
 
 </excludes>
