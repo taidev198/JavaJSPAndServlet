@@ -22,7 +22,7 @@ public class HomeController extends HttpServlet {
         UserModel user = new UserModel();
         user.setUserName("tai");
         request.setAttribute("user", user);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("decorators/web.jsp");
         dispatcher.forward(request, response);
 
 //        // Hello
