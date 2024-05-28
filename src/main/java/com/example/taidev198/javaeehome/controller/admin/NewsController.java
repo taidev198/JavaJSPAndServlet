@@ -1,5 +1,7 @@
 package com.example.taidev198.javaeehome.controller.admin;
 
+import com.example.taidev198.javaeehome.constant.SystemConstant;
+import com.example.taidev198.javaeehome.model.NewsModel;
 import com.example.taidev198.javaeehome.model.UserModel;
 import com.example.taidev198.javaeehome.service.INewsService;
 import com.example.taidev198.javaeehome.service.NewsService;
@@ -26,9 +28,10 @@ public class NewsController extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
-        UserModel user = new UserModel();
-        user.setUserName("tai");
-        request.setAttribute("user", user);
+        NewsModel newsModel = new NewsModel();
+        newsModel.setListModels(newsService.findAll());
+        request.setAttribute(SystemConstant.MODEL, newsModel);
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("/views/admin/news/list.jsp");
         dispatcher.forward(request, response);
 
