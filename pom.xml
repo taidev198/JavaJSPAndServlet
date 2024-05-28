@@ -30,6 +30,14 @@
             <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
             <version>2.0.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/javax/javaee-api -->
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>7.0</version>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.glassfish.web/jstl-impl -->
         <dependency>
             <groupId>org.glassfish.web</groupId>
@@ -83,7 +91,12 @@
             <artifactId>gson</artifactId>
             <version>2.11.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <!-- {version} can be 6.0.0, 7.0.0, etc. -->
+            <version>6.0.0</version>
+        </dependency>
     </dependencies>
 
     <build>

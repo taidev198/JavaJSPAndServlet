@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="/template/jquery.twbsPagination.js"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -99,36 +100,38 @@
                     </tr>
                     </tfoot>
                     <tbody>
-                    <c:forEach var="item" items="${model.listModels}" >
+                    <c:forEach var="item" begin="0" end="4" step="1" >
                     <tr>
-                        <td>${item.title}</td>
-                        <td>${item.content}</td>
-                        <td>${item.description}</td>
-                        <td>${item.title}</td>
-                        <td>${item.title}</td>
+<%--                        <td>${item.title}</td>--%>
+<%--                        <td>${item.content}</td>--%>
+<%--                        <td>${item.description}</td>--%>
+<%--                        <td>${item.title}</td>--%>
+<%--                        <td>${item.title}</td>--%>
+                            <td>nguyen thanh tai</td>
+                            <td>nguyen thanh tai</td>
                     </tr>
                     </c:forEach>
                     </tbody>
                 </table>
+                <ul class="pagination" id="pagination"></ul>
 
             </div>
         </div>
     </div>
-
-</main>
-<ul class="pagination" id="pagination"></ul>
-<script type="text/javascript">
-    $(function () {
-        window.pagObj = $('#pagination').twbsPagination({
-            totalPages: 35,
-            visiblePages: 10,
-            onPageClick: function (event, page) {
-                console.info(page + ' (from options)');
-            }
-        }).on('page', function (event, page) {
-            console.info(page + ' (from event listening)');
+    <script type="text/javascript">
+        $(function () {
+            window.pagObj = $('#pagination').twbsPagination({
+                totalPages: 35,
+                visiblePages: 10,
+                onPageClick: function (event, page) {
+                    console.info(page + ' (from options)');
+                }
+            }).on('page', function (event, page) {
+                console.info(page + ' (from event listening)');
+            });
         });
-    });
-</script>
+    </script>
+</main>
+
 </body>
 </html>

@@ -3,14 +3,13 @@ package com.example.taidev198.javaeehome.service;
 import com.example.taidev198.javaeehome.impl.NewsDAO;
 import com.example.taidev198.javaeehome.model.NewsModel;
 import jakarta.inject.Inject;
-
 import java.sql.Timestamp;
 import java.util.List;
 
 public class NewsService implements INewsService{
 
-    @Inject
-    private NewsDAO newsDAO;
+    //@Inject
+    private NewsDAO newsDAO = new NewsDAO();
 
     @Override
     public List<NewsModel> findByCategoryId(Long categoryId) {

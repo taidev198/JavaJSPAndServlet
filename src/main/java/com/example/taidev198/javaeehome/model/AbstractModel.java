@@ -10,6 +10,9 @@ public abstract class AbstractModel<T> {
     private String createdBy ;
     private String modifiedBy;
     private List<T> listModels =  new ArrayList<>();
+    private int page;
+    private int maxPageItem;
+    private int totalPages;
 
     public Timestamp getCreatedDate() {
         return createdDate;

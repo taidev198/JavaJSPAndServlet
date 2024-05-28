@@ -4,6 +4,7 @@ import com.example.taidev198.javaeehome.dao.AbstractDAO;
 import com.example.taidev198.javaeehome.dao.INewsDAO;
 import com.example.taidev198.javaeehome.mapper.NewsMapper;
 import com.example.taidev198.javaeehome.model.NewsModel;
+import org.springframework.jdbc.core.RowMapper;
 
 import java.util.List;
 
@@ -37,38 +38,63 @@ public class NewsDAO extends AbstractDAO<NewsModel> implements INewsDAO {
     public Long save(NewsModel newsModel) {
         StringBuilder sql = new StringBuilder("insert into news(title,content, thumbnails,shortdescription,category_id,createddate,modifieddate,createdby,modifiedby) ");
         sql.append(" values(?,?,?, ?, ?, ?, ?, ?, ?)");
-//        return insert(sql.toString(),
-//                newsModel.getTitle(),
-//                newsModel.getContent(),
-//                newsModel.getThumbnails(),
-//                newsModel.getShortDescription(),
-//                newsModel.getCategoryId(),
-//                newsModel.getCreatedDate(),
-//                newsModel.getModifiedDate(),
-//                newsModel.getCreatedBy(),
-//                newsModel.getModifiedBy());
+        return insert(sql.toString(),
+                newsModel.getTitle(),
+                newsModel.getContent(),
+                newsModel.getThumbnails(),
+                newsModel.getShortDescription(),
+                newsModel.getCategoryId(),
+                newsModel.getCreatedDate(),
+                newsModel.getModifiedDate(),
+                newsModel.getCreatedBy(),
+                newsModel.getModifiedBy());
 
-        return null;
+      //  return null;
     }
 
     @Override
     public void delete(Long id) {
         String sql = "delete from news where id=?";
-       // update(sql, id);
+        update(sql, id);
     }
 
     @Override
     public void update(NewsModel newsModel) {
         StringBuilder sql = new StringBuilder("update news set title =?,content =?, thumbnails = ?,shortdescription= ?,category_id =?,createddate=?,modifieddate=?,createdby=?,modifiedby=? ");
-//         update(sql.toString(),
-//                newsModel.getTitle(),
-//                newsModel.getContent(),
-//                newsModel.getThumbnails(),
-//                newsModel.getShortDescription(),
-//                newsModel.getCategoryId(),
-//                newsModel.getCreatedDate(),
-//                newsModel.getModifiedDate(),
-//                newsModel.getCreatedBy(),
-//                newsModel.getModifiedBy());
+         update(sql.toString(),
+                newsModel.getTitle(),
+                newsModel.getContent(),
+                newsModel.getThumbnails(),
+                newsModel.getShortDescription(),
+                newsModel.getCategoryId(),
+                newsModel.getCreatedDate(),
+                newsModel.getModifiedDate(),
+                newsModel.getCreatedBy(),
+                newsModel.getModifiedBy());
+    }
+
+    @Override
+    public <T> List<T> query(String sql, RowMapper<T> rowMapper, Object... parameters) {
+        return List.of();
+    }
+
+    @Override
+    public void update(String sql, Object... parameters) {
+
+    }
+
+    @Override
+    public Long insert(String sql, Object... parameters) {
+        return 0l;
+    }
+
+    @Override
+    public void delete(String sql, Object... parameters) {
+
+    }
+
+    @Override
+    public void count(String sql, Object... parameters) {
+
     }
 }

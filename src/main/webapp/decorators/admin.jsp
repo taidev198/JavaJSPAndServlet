@@ -18,9 +18,7 @@
     <title>Dashboard - SB Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="<c:url value="/template/admin/css/styles.css"/>" rel="stylesheet" />
-    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    <script src="<c:url value="/template/jquery.twbsPagination.js"/> " ></script>
-    <script src="<c:url value="/template/jquery.twbsPagination.min.js"/> " ></script>
+<%--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--%>
 </head>
 <body class="sb-nav-fixed">
 <%@include file="/common/admin/header.jsp"%>
@@ -99,6 +97,10 @@
         <%@include file="/common/admin/footer.jsp"%>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+<script src="<c:url value="/template/jquery.twbsPagination.js"/> " type="text/javascript" > </script>
+<script src="<c:url value="/template/jquery.twbsPagination.min.js"/> " type="text/javascript" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="<c:url value="/template/admin/js/scripts.js"/>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>

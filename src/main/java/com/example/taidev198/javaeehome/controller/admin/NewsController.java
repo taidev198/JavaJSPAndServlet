@@ -6,6 +6,7 @@ import com.example.taidev198.javaeehome.model.UserModel;
 import com.example.taidev198.javaeehome.service.INewsService;
 import com.example.taidev198.javaeehome.service.NewsService;
 import jakarta.inject.Inject;
+//import com.google.inject.Inject;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -14,13 +15,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(urlPatterns ={ "/admin-new-list"})
 public class NewsController extends HttpServlet {
     private String message;
 
-    @Inject
-    private INewsService newsService;
+    //@Inject
+    private INewsService newsService = new NewsService();
 
     public void init() {
         message = "nguyen thanh tai";
@@ -30,8 +33,8 @@ public class NewsController extends HttpServlet {
         response.setContentType("text/html");
         NewsModel newsModel = new NewsModel();
         newsModel.setListModels(newsService.findAll());
-        request.setAttribute(SystemConstant.MODEL, newsModel);
-
+        List<Integer> newsList = List.of(1,2,3,4,5,6,7,8);
+        request.setAttribute(SystemConstant.MODEL, newsList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/views/admin/news/list.jsp");
         dispatcher.forward(request, response);
 
