@@ -2,7 +2,7 @@ package com.example.taidev198.javaeehome.model;
 
 import java.sql.Timestamp;
 
-public class CommentModel extends AbstractModel{
+public class CommentModel extends AbstractModel<CommentModel>{
 
     private Long id;
     private String content;

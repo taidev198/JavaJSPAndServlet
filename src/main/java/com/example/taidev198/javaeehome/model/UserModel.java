@@ -2,7 +2,7 @@ package com.example.taidev198.javaeehome.model;
 
 import java.sql.Timestamp;
 
-public class UserModel extends AbstractModel{
+public class UserModel extends AbstractModel<UserModel>{
 
     private Long id ;
     private String password;

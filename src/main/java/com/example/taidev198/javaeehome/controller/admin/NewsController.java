@@ -1,6 +1,9 @@
 package com.example.taidev198.javaeehome.controller.admin;
 
 import com.example.taidev198.javaeehome.model.UserModel;
+import com.example.taidev198.javaeehome.service.INewsService;
+import com.example.taidev198.javaeehome.service.NewsService;
+import jakarta.inject.Inject;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -14,6 +17,8 @@ import java.io.IOException;
 public class NewsController extends HttpServlet {
     private String message;
 
+    @Inject
+    private INewsService newsService;
 
     public void init() {
         message = "nguyen thanh tai";

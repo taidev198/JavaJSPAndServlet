@@ -1,12 +1,15 @@
 package com.example.taidev198.javaeehome.model;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
-public abstract class AbstractModel {
+public abstract class AbstractModel<T> {
     private Timestamp createdDate;
     private Timestamp modifiedDate ;
     private String createdBy ;
     private String modifiedBy;
+    private List<T> listModels =  new ArrayList<>();
 
     public Timestamp getCreatedDate() {
         return createdDate;
@@ -38,5 +41,12 @@ public abstract class AbstractModel {
 
     public void setModifiedBy(String modifiedBy) {
         this.modifiedBy = modifiedBy;
+    }
+
+    public List<T> getListModels() {
+        return listModels;
+    }
+    public void setListModels(List<T> listModels) {
+        this.listModels = listModels;
     }
 }
