@@ -72,29 +72,4 @@ public class NewsDAO extends AbstractDAO<NewsModel> implements INewsDAO {
                 newsModel.getCreatedBy(),
                 newsModel.getModifiedBy());
     }
-
-    @Override
-    public <T> List<T> query(String sql, RowMapper<T> rowMapper, Object... parameters) {
-        return List.of();
-    }
-
-    @Override
-    public void update(String sql, Object... parameters) {
-
-    }
-
-    @Override
-    public Long insert(String sql, Object... parameters) {
-        return 0l;
-    }
-
-    @Override
-    public void delete(String sql, Object... parameters) {
-
-    }
-
-    @Override
-    public void count(String sql, Object... parameters) {
-
-    }
 }
