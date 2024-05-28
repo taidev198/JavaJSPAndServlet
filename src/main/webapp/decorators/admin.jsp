@@ -111,12 +111,19 @@
 <script src="<c:url value="/template/admin/assets/demo/chart-bar-demo.js"/>"></script>
 <script src="<c:url value="/template/admin/js/simple-datatables.min.js"/>" crossorigin="anonymous"></script>
 <script type="text/javascript">
+    <%--var currentPage = ${model.page};--%>
+    <%--var visiblePage = ${model.maxPageItem};--%>
+    <%--var totalPages = ${model.totalPages};--%>
+    // var limit = 2;
     $(function () {
         window.pagObj = $('#pagination').twbsPagination({
-            totalPages: 35,
-            visiblePages: 10,
+            totalPages: 20,
+            startPage: 0,
+            visiblePages: 2,
             onPageClick: function (event, page) {
-                console.info(page + ' (from options)');
+                // $('#maxPageItem').val(limit);
+                // $('#page').val(page);
+                // $('#formsubmit').submit(); //click to change form table
             }
         }).on('page', function (event, page) {
             console.info(page + ' (from event listening)');

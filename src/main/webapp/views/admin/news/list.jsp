@@ -7,7 +7,8 @@
 --%>
 <%@include file="/common/taglist.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-    <main>
+<%--get method will go int doget method controller--%>
+<main>
         <div class="container-fluid px-4">
             <h1 class="mt-4">Tables</h1>
             <ol class="breadcrumb mb-4">
@@ -21,6 +22,8 @@
                     .
                 </div>
             </div>
+<%--            <form action="<c:url value="/admin-new-list"/> " id = "formsubmit" method="get">--%>
+
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
@@ -63,7 +66,10 @@
                         </tbody>
                     </table>
                     <ul class="pagination" id="pagination"></ul>
+<%--                    <input type="hidden" value="" id="page" name="pageName" />--%>
+<%--                    <input type="hidden" value="" id="maxPageItem" name="maxPageItemName" />--%>
                 </div>
             </div>
+<%--            </form>--%>
         </div>
-    </main>
+</main>

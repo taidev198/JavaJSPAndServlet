@@ -100,7 +100,7 @@
                     </tr>
                     </tfoot>
                     <tbody>
-                    <c:forEach var="item" items="model.listModels" >
+                    <c:forEach var="item" items="${model.listModels}" >
                     <tr>
                         <td>${item}</td>
 <%--                        <td>${item.content}</td>--%>
