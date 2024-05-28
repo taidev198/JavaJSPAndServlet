@@ -21,12 +21,12 @@ public class NewsMapper implements RowMapper<NewsModel> {
             newsModel.setCategoryId(rs.getLong("categoryid"));
             newsModel.setThumbnails(rs.getString("thumbnails"));
             newsModel.setShortDescription(rs.getString("shortdescription"));
-            newsModel.setModifiedBy(rs.getString("modifiedby"));
+            newsModel.setCreatedDate(rs.getTimestamp("createddate"));
             if (rs.getTimestamp("modifieddate") != null) {
                 newsModel.setModifiedDate(rs.getTimestamp("modifieddate"));
             }
-            if (rs.getTimestamp("createddate") != null)
-                newsModel.setCreatedDate(rs.getTimestamp("createddate"));
+            if (rs.getTimestamp("modifiedby") != null)
+                newsModel.setModifiedBy(rs.getString("modifiedby"));
             return newsModel;
         } catch (Exception e) {
             e.printStackTrace();

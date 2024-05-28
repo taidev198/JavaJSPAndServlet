@@ -118,7 +118,7 @@
     $(function () {
         window.pagObj = $('#pagination').twbsPagination({
             totalPages: 20,
-            startPage: 0,
+            startPage: 1,
             visiblePages: 2,
             onPageClick: function (event, page) {
                 // $('#maxPageItem').val(limit);

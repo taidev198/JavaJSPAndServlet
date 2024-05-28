@@ -100,17 +100,17 @@
                     </tr>
                     </tfoot>
                     <tbody>
-                    <c:forEach var="item" items="${model.listModels}" >
-                    <tr>
-                        <td>${item}</td>
-<%--                        <td>${item.content}</td>--%>
-<%--                        <td>${item.description}</td>--%>
-<%--                        <td>${item.title}</td>--%>
-<%--                        <td>${item.title}</td>--%>
-<%--                            <td>nguyen thanh tai</td>--%>
-<%--                            <td>nguyen thanh tai</td>--%>
-                    </tr>
-                    </c:forEach>
+<%--                    <c:forEach var="item" items="model.listModels" >--%>
+<%--                    <tr>--%>
+<%--                        <td>${item}</td>--%>
+<%--&lt;%&ndash;                        <td>${item.content}</td>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                        <td>${item.description}</td>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                        <td>${item.title}</td>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                        <td>${item.title}</td>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                            <td>nguyen thanh tai</td>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                            <td>nguyen thanh tai</td>&ndash;%&gt;--%>
+<%--                    </tr>--%>
+<%--                    </c:forEach>--%>
                     </tbody>
                 </table>
                 <ul class="pagination" id="pagination"></ul>
