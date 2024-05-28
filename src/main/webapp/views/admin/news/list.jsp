@@ -507,6 +507,7 @@
                         </tr>
                         </tbody>
                     </table>
+                    <ul class="pagination" id="pagination"></ul>
                 </div>
             </div>
         </div>

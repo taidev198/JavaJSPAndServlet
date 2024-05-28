@@ -98,6 +98,9 @@
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 <script src="<c:url value="/template/jquery.twbsPagination.js"/> " type="text/javascript" > </script>
 <script src="<c:url value="/template/jquery.twbsPagination.min.js"/> " type="text/javascript" ></script>
@@ -107,6 +110,19 @@
 <script src="<c:url value="/template/admin/assets/demo/chart-area-demo.js"/>"></script>
 <script src="<c:url value="/template/admin/assets/demo/chart-bar-demo.js"/>"></script>
 <script src="<c:url value="/template/admin/js/simple-datatables.min.js"/>" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(function () {
+        window.pagObj = $('#pagination').twbsPagination({
+            totalPages: 35,
+            visiblePages: 10,
+            onPageClick: function (event, page) {
+                console.info(page + ' (from options)');
+            }
+        }).on('page', function (event, page) {
+            console.info(page + ' (from event listening)');
+        });
+    });
+</script>
 </body>
 </html>
 
