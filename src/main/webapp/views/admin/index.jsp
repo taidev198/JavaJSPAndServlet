@@ -100,15 +100,15 @@
                     </tr>
                     </tfoot>
                     <tbody>
-                    <c:forEach var="item" begin="0" end="4" step="1" >
+                    <c:forEach var="item" items="model.listModels" >
                     <tr>
-<%--                        <td>${item.title}</td>--%>
+                        <td>${item}</td>
 <%--                        <td>${item.content}</td>--%>
 <%--                        <td>${item.description}</td>--%>
 <%--                        <td>${item.title}</td>--%>
 <%--                        <td>${item.title}</td>--%>
-                            <td>nguyen thanh tai</td>
-                            <td>nguyen thanh tai</td>
+<%--                            <td>nguyen thanh tai</td>--%>
+<%--                            <td>nguyen thanh tai</td>--%>
                     </tr>
                     </c:forEach>
                     </tbody>
