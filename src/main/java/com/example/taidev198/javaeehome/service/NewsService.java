@@ -43,7 +43,12 @@ public class NewsService implements INewsService{
     }
 
     @Override
-    public List<NewsModel> findAll() {
-        return newsDAO.findAll();
+    public List<NewsModel> findAll(Integer offset, Integer limit) {
+        return newsDAO.findAll(offset, limit);
+    }
+
+    @Override
+    public int getTotalItems() {
+        return newsDAO.getTotalItems();
     }
 }

@@ -72,6 +72,8 @@
                 </div>
             </div>
         </div>
+<%--        <form action="<c:url value="/admin-home?pageName=1&maxPageItem=2"/> " id = "formsubmit" method="get">--%>
+
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
@@ -100,22 +102,22 @@
                     </tr>
                     </tfoot>
                     <tbody>
-<%--                    <c:forEach var="item" items="model.listModels" >--%>
-<%--                    <tr>--%>
-<%--                        <td>${item}</td>--%>
-<%--&lt;%&ndash;                        <td>${item.content}</td>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                        <td>${item.description}</td>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                        <td>${item.title}</td>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                        <td>${item.title}</td>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                            <td>nguyen thanh tai</td>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                            <td>nguyen thanh tai</td>&ndash;%&gt;--%>
-<%--                    </tr>--%>
-<%--                    </c:forEach>--%>
+                    <c:forEach var="item" items="${model.listModels}" >
+                        <tr>
+                            <td>${item.content}</td>
+                            <td>${item.content}</td>
+                            <td>${item.title}</td>
+                            <td>${item.title}</td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
                 <ul class="pagination" id="pagination"></ul>
+<%--                <input type="hidden" value="" id="page" name="page" />--%>
+<%--                <input type="hidden" value="" id="maxPageItem" name="maxPageItem" />--%>
             </div>
         </div>
+<%--        </form>--%>
     </div>
 </main>
 </body>

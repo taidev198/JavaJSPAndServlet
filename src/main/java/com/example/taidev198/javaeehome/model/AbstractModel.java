@@ -10,9 +10,10 @@ public abstract class AbstractModel<T> {
     private String createdBy ;
     private String modifiedBy;
     private List<T> listModels =  new ArrayList<>();
-    private int page = 0;
-    private int maxPageItem = 5;
-    private int totalPages = 10;
+    private int page ;
+    private int maxPageItem ;
+    private int totalPages;
+    private int totalItems ;
 
     public Timestamp getCreatedDate() {
         return createdDate;
@@ -75,5 +76,11 @@ public abstract class AbstractModel<T> {
 
     public void setTotalPages(int totalPages) {
         this.totalPages = totalPages;
+    }
+    public int getTotalItems() {
+        return totalItems;
+    }
+    public void setTotalItems(int totalItems) {
+        this.totalItems = totalItems;
     }
 }

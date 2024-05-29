@@ -5,6 +5,7 @@ import com.example.taidev198.javaeehome.model.NewsModel;
 import com.example.taidev198.javaeehome.model.UserModel;
 import com.example.taidev198.javaeehome.service.INewsService;
 import com.example.taidev198.javaeehome.service.NewsService;
+import com.example.taidev198.javaeehome.utils.FormUtils;
 import jakarta.inject.Inject;
 //import com.google.inject.Inject;
 import jakarta.servlet.RequestDispatcher;
@@ -31,17 +32,34 @@ public class NewsController extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
+//        NewsModel newsModel = FormUtils.toModel(NewsModel.class, request);
         NewsModel newsModel = new NewsModel();
-        newsModel.setListModels(newsService.findAll());
+        String pageStr = request.getParameter("page");
+        String maxPageStr = request.getParameter("maxPageItem");
+        if (pageStr == null || pageStr.equals("")) {
+            pageStr = "1";
+        }
+        newsModel.setPage(Integer.parseInt(pageStr));
+        System.out.println(newsModel.getPage() + "page");
+        if (maxPageStr == null || maxPageStr.equals("")) {
+            maxPageStr = "2";
+        }
+        newsModel.setMaxPageItem(Integer.parseInt(maxPageStr));
+        System.out.println(newsModel.getMaxPageItem() + "page");
+        int offset = (newsModel.getPage() - 1) * newsModel.getMaxPageItem();
+        List<NewsModel> newsList = newsService.findAll(offset,newsModel.getMaxPageItem());
+        System.out.println(offset +"offset");
+        System.out.println(newsList.size()+"size");
+        newsModel.setListModels(newsList);
+        newsModel.setTotalItems(newsService.getTotalItems());
+        newsModel.setTotalPages((int) Math.ceil((double) newsModel.getTotalItems()/newsModel.getMaxPageItem()));
         request.setAttribute(SystemConstant.MODEL, newsModel);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/views/admin/news/list.jsp");
         dispatcher.forward(request, response);
+    }
 
-//        // Hello
-//        PrintWriter out = response.getWriter();
-//        out.println("<html><body>");
-//        out.println("<h1>" + message + "</h1>");
-//        out.println("</body></html>");
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
     }
 
     public void destroy() {

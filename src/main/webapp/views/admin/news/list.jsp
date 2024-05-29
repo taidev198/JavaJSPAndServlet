@@ -22,7 +22,7 @@
                     .
                 </div>
             </div>
-            <form action="<c:url value="/admin-new-list"/> " id = "formsubmit" method="get">
+            <form action="<c:url value="/admin-new-list?page=1&maxPageItem=2"/> " id = "formsubmit" method="get">
 
             <div class="card mb-4">
                 <div class="card-header">
@@ -63,8 +63,8 @@
                         </tbody>
                     </table>
                     <ul class="pagination" id="pagination"></ul>
-<%--                    <input type="hidden" value="" id="page" name="pageName" />--%>
-<%--                    <input type="hidden" value="" id="maxPageItem" name="maxPageItemName" />--%>
+                    <input type="hidden" value="1" id="page" name="page" />
+                    <input type="hidden" value="2" id="maxPageItem" name="maxPageItem" />
                 </div>
             </div>
             </form>
