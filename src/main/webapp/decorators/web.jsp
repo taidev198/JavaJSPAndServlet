@@ -32,7 +32,7 @@
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">Hi ${USERMODEL.name}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">Hi ${USERMODEL.userName}</a></li>
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="<c:url value="/thoat?action=login"/>">Log out</a></li>
                 </ul>
             </c:if>

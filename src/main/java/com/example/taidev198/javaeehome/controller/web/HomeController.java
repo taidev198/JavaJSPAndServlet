@@ -42,14 +42,16 @@ public class HomeController extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String action = request.getParameter("action");
         if (action != null && action.equals("login")) {
-            UserModel userModel = FormUtils.toModel(UserModel.class, request);
+            UserModel userModel = new UserModel();
+            userModel.setUserName(request.getParameter("username"));
+            userModel.setPassword(request.getParameter("password"));
             userModel = userService.findByUsernameAndPasswordAndStatus(userModel.getUserName(), userModel.getPassword(), 1);
             if (userModel != null) {//authentication
                 SessionUtils sessionUtils = SessionUtils.getInstance();
 
-                if (userModel.getRole().getCode().equals("USER")) {//authenzication
+                if (userModel.getRole().getName().equals("USER")) {//authenzication
                     response.sendRedirect(request.getContextPath()+"/trang-chu");
-                } else if (userModel.getRole().getCode().equals("ADMIN")) {
+                } else if (userModel.getRole().getName().equals("ADMIN")) {
                     response.sendRedirect(request.getContextPath()+"/admin-home");
                 }
                 sessionUtils.putValue(request, "USERMODEL", userModel);
