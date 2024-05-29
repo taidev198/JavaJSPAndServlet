@@ -23,15 +23,13 @@ public class NewsDAO extends AbstractDAO<NewsModel> implements INewsDAO {
     @Override
     public List<NewsModel> findByCategoryId(Long categoryId) {
         String sql = "select * from news where category_id=?";
-       // return query(sql, new NewsMapper(), categoryId);
-        return null;
+        return query(sql, new NewsMapper(), categoryId);
     }
 
     @Override
     public List<NewsModel> findAll() {
         String sql = "select * from news ";
-       // return query(sql, new NewsMapper());
-        return null;
+        return query(sql, new NewsMapper());
     }
 
     @Override
@@ -48,8 +46,6 @@ public class NewsDAO extends AbstractDAO<NewsModel> implements INewsDAO {
                 newsModel.getModifiedDate(),
                 newsModel.getCreatedBy(),
                 newsModel.getModifiedBy());
-
-      //  return null;
     }
 
     @Override

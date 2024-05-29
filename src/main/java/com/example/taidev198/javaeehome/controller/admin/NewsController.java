@@ -33,8 +33,7 @@ public class NewsController extends HttpServlet {
         response.setContentType("text/html");
         NewsModel newsModel = new NewsModel();
         newsModel.setListModels(newsService.findAll());
-        List<Integer> newsList = List.of(1,2,3,4,5,6,7,8);
-        request.setAttribute(SystemConstant.MODEL, newsList);
+        request.setAttribute(SystemConstant.MODEL, newsModel);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/views/admin/news/list.jsp");
         dispatcher.forward(request, response);
 

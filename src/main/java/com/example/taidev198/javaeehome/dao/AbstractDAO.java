@@ -11,9 +11,9 @@ public class AbstractDAO<T> implements GenericDAO<T> {
         public Connection getConnection() {
                 try {
                         Class.forName("com.mysql.jdbc.Driver");
-                        String url = "jdbc:mysql://localhost:3306/taidev198";
+                        String url = "jdbc:mysql://localhost:3306/jsp_servlet";
                         String username = "root";
-                        String password = "root";
+                        String password = "TaiMar198";
                         return DriverManager.getConnection(url, username, password);
 
                 } catch (ClassNotFoundException | SQLException e) {
@@ -22,8 +22,8 @@ public class AbstractDAO<T> implements GenericDAO<T> {
         }
 
         @Override
-        public <T1> List<T1> query(String sql, RowMapper<T1> rowMapper, Object... parameters) {
-                List<T1> results = new ArrayList<>();
+        public <T> List<T> query(String sql, RowMapper<T> rowMapper, Object... parameters) {
+                List<T> results = new ArrayList<>();
                 Connection connection = null;
                 PreparedStatement preparedStatement = null;
                 ResultSet resultSet = null;
