@@ -46,8 +46,9 @@ public class HomeController extends HttpServlet {
             userModel.setUserName(request.getParameter("username"));
             userModel.setPassword(request.getParameter("password"));
             userModel = userService.findByUsernameAndPasswordAndStatus(userModel.getUserName(), userModel.getPassword(), 1);
+            SessionUtils sessionUtils = SessionUtils.getInstance();
             if (userModel != null) {//authentication
-                SessionUtils sessionUtils = SessionUtils.getInstance();
+
 
                 if (userModel.getRole().getName().equals("USER")) {//authenzication
                     response.sendRedirect(request.getContextPath()+"/trang-chu");
@@ -57,6 +58,7 @@ public class HomeController extends HttpServlet {
                 sessionUtils.putValue(request, "USERMODEL", userModel);
             } else {
                 response.sendRedirect(request.getContextPath()+"/dang-nhap?action=login");
+                sessionUtils.removeValue(request, "USERMODEL");
             }
 
         }

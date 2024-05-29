@@ -86,10 +86,19 @@
                     </a>
                 </div>
             </div>
+
+              <c:if test="${empty USERMODEL}">
             <div class="sb-sidenav-footer">
                 <div class="small">Logged in as:</div>
                 Start Bootstrap
             </div>
+             </c:if>
+            <c:if test="${not empty USERMODEL}">
+                <div class="sb-sidenav-footer">
+                    <div class="small">Logged in as:</
+                        ${USERMODEL.userName}
+                </div>
+            </c:if>
         </nav>
     </div>
     <div id="layoutSidenav_content">
