@@ -12,4 +12,8 @@
     <decorator name ="web" page="web.jsp">
         <pattern>/*</pattern>
     </decorator>
+<!--    declaring the path of login to decorators plugin-->
+    <decorator name ="loign" page="login.jsp">
+        <pattern>/dang-nhap</pattern>
+    </decorator>
 </decorators>
