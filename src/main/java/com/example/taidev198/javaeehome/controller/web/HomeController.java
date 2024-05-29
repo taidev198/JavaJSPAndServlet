@@ -6,6 +6,7 @@ import com.example.taidev198.javaeehome.model.UserModel;
 import com.example.taidev198.javaeehome.service.IUserService;
 import com.example.taidev198.javaeehome.service.UserService;
 import com.example.taidev198.javaeehome.utils.FormUtils;
+import com.example.taidev198.javaeehome.utils.SessionUtils;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
@@ -20,15 +21,19 @@ public class HomeController extends HttpServlet {
         response.setContentType("text/html");
         request.setCharacterEncoding("utf-8");
         String action = request.getParameter("action");
-        RequestDispatcher dispatcher;
+        RequestDispatcher dispatcher = null;
         if (action != null && action.equals("login")) {
             dispatcher = request.getRequestDispatcher("/views/login.jsp");
+            dispatcher.forward(request, response);
         } else if (action != null && action.equals("logout")) {
-            dispatcher = request.getRequestDispatcher("/views/admin/dang-nhap.jsp");
+            SessionUtils.getInstance().removeValue(request, "USERMODEL");
+            //after clicking logout we redirect to another url using response send direct
+            response.sendRedirect(request.getContextPath() + "/trang-chu");
         } else {
             dispatcher = request.getRequestDispatcher("/views/admin/index.jsp");
+            dispatcher.forward(request, response);
         }
-        dispatcher.forward(request, response);
+
 //        UserModel user = new UserModel();
 //        user.setUserName("tai");
 //        request.setAttribute("user", user);
@@ -40,14 +45,18 @@ public class HomeController extends HttpServlet {
             UserModel userModel = FormUtils.toModel(UserModel.class, request);
             userModel = userService.findByUsernameAndPasswordAndStatus(userModel.getUserName(), userModel.getPassword(), 1);
             if (userModel != null) {//authentication
+                SessionUtils sessionUtils = SessionUtils.getInstance();
+
                 if (userModel.getRole().getCode().equals("USER")) {//authenzication
                     response.sendRedirect(request.getContextPath()+"/trang-chu");
                 } else if (userModel.getRole().getCode().equals("ADMIN")) {
-                    response.sendRedirect(request.getContextPath()+"/admin-homem");
+                    response.sendRedirect(request.getContextPath()+"/admin-home");
                 }
+                sessionUtils.putValue(request, "USERMODEL", userModel);
             } else {
                 response.sendRedirect(request.getContextPath()+"/dang-nhap?action=login");
             }
+
         }
 
     }

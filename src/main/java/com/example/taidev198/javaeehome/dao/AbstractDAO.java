@@ -5,15 +5,22 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 public class AbstractDAO<T> implements GenericDAO<T> {
 
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("db");
+
         public Connection getConnection() {
                 try {
-                        Class.forName("com.mysql.cj.jdbc.Driver");
-                        String url = "jdbc:mysql://localhost:3306/jsp_servlet";
-                        String username = "root";
-                        String password = "TaiMar198";
+//                        Class.forName("com.mysql.cj.jdbc.Driver");
+//                        String url = "jdbc:mysql://localhost:3306/jsp_servlet";
+//                        String username = "root";
+//                        String password = "TaiMar198";
+                        Class.forName(resourceBundle.getString("driverName"));
+                        String url = resourceBundle.getString("url");
+                        String username = resourceBundle.getString("username");
+                        String password = resourceBundle.getString("password");
                         return DriverManager.getConnection(url, username, password);
 
                 } catch (ClassNotFoundException | SQLException e) {
