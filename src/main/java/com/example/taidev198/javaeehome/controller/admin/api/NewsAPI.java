@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -18,6 +19,7 @@ import jakarta.servlet.http.HttpUtils;
 import java.io.IOException;
 import java.sql.SQLException;
 
+@WebServlet(urlPatterns = {"/api-admin-news"})
 public class NewsAPI extends HttpServlet {
 
     @Inject
@@ -33,6 +35,8 @@ public class NewsAPI extends HttpServlet {
         NewsModel newsModel;
         Gson gson = new GsonBuilder().create();
         newsModel = gson.fromJson(request.getReader(), NewsModel.class);
+        //get current user's data
+        newsModel.setCreatedBy(((UserModel)SessionUtils.getInstance().getValue(request, "USERMODEL")).getUserName());
         newsModel = newsService.save(newsModel);
         mapper.writeValue(response.getOutputStream(), newsModel);
 
@@ -45,6 +49,7 @@ public class NewsAPI extends HttpServlet {
         NewsModel newsModel;
         Gson gson = new GsonBuilder().create();
         newsModel = gson.fromJson(request.getReader(), NewsModel.class);
+        newsModel.setModifiedBy(((UserModel)SessionUtils.getInstance().getValue(request, "USERMODEL")).getUserName());
         newsModel = newsService.update(newsModel);
         mapper.writeValue(response.getOutputStream(), newsModel);
     }
