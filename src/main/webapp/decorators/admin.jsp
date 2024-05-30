@@ -16,6 +16,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Dashboard - SB Admin</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="<c:url value="/template/admin/css/styles.css"/>" rel="stylesheet" />
 <%--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--%>
@@ -119,6 +120,7 @@
 <script src="<c:url value="/template/admin/assets/demo/chart-area-demo.js"/>"></script>
 <script src="<c:url value="/template/admin/assets/demo/chart-bar-demo.js"/>"></script>
 <script src="<c:url value="/template/admin/js/simple-datatables.min.js"/>" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
     var currentPage = ${model.page};
     var totalPages = ${model.totalPages};

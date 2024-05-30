@@ -22,6 +22,7 @@
                     .
                 </div>
             </div>
+            <table>
             <form action="<c:url value="/admin-new-list?page=1&maxPageItem=2"/> " id = "formsubmit" method="get">
 
             <div class="card mb-4">
@@ -37,8 +38,7 @@
                             <th>Position</th>
                             <th>Office</th>
                             <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
+                            <th>THAO TAC</th>
                         </tr>
                         </thead>
                         <tfoot>
@@ -47,8 +47,7 @@
                             <th>Position</th>
                             <th>Office</th>
                             <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
+                            <th>THAO TAC</th>
                         </tr>
                         </tfoot>
                         <tbody>
@@ -58,6 +57,11 @@
                                 <td>${item.content}</td>
                                 <td>${item.title}</td>
                                 <td>${item.title}</td>
+                                <td>
+                                    <button type="button" class="btn btn-default btn-sm">
+                                        <span class="glyphicon glyphicon-edit"></span> Edit
+                                    </button>
+                                </td>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -69,5 +73,6 @@
                 </div>
             </div>
             </form>
+            </table>
         </div>
 </main>

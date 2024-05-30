@@ -36,7 +36,7 @@ public class NewsController extends HttpServlet {
         String viewUrl = "";
         NewsModel newsModel = new NewsModel();
         newsModel.setType(request.getParameter("type"));
-        if (newsModel.getType().equals(SystemConstant.GET_LIST_NEWS)) {
+    //    if (newsModel.getType().equals(SystemConstant.GET_LIST_NEWS)) {
             String pageStr = request.getParameter("page");
             String maxPageStr = request.getParameter("maxPageItem");
             if (pageStr == null || pageStr.equals("")) {
@@ -53,19 +53,19 @@ public class NewsController extends HttpServlet {
             newsModel.setTotalItems(newsService.getTotalItems());
             newsModel.setTotalPages((int) Math.ceil((double) newsModel.getTotalItems()/newsModel.getMaxPageItem()));
             viewUrl = "/views/admin/news/list.jsp";
-            RequestDispatcher dispatcher = request.getRequestDispatcher(viewUrl);
-            dispatcher.forward(request, response);
-        } else if (newsModel.getType().equals(SystemConstant.CHANGE_NEWS)) {
-            if (newsModel.getId()!=null) {//exists
-                newsModel = newsService.findOneById(newsModel.getId());
-
-            } else {//no exist
-
-            }
-
-            viewUrl = "/views/admin/news/edit.jsp";
-
-        }
+//            RequestDispatcher dispatcher = request.getRequestDispatcher(viewUrl);
+//            dispatcher.forward(request, response);
+//        } else if (newsModel.getType().equals(SystemConstant.CHANGE_NEWS)) {
+//            if (newsModel.getId()!=null) {//exists
+//                newsModel = newsService.findOneById(newsModel.getId());
+//
+//            } else {//no exist
+//
+//            }
+//
+//            viewUrl = "/views/admin/news/edit.jsp";
+//
+//        }
         request.setAttribute(SystemConstant.MODEL, newsModel);
         RequestDispatcher dispatcher = request.getRequestDispatcher(viewUrl);
         dispatcher.forward(request, response);
