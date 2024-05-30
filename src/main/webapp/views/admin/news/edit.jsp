@@ -29,8 +29,35 @@
         </div>
         <div class="page-content">
             <div class="row">
-
+                <form>
+                    <label for="title">Tieu De</label>
+                    <input type="text" class="form-control" id="title" placeholder="Nhap..." value="${model.title}">
+                </form>
+                <br/>
+                <br/>
+                <form>
+                    <label for="content" >Content</label>
+                    <input type="text" class="form-control" id="content" value="${model.content}"/>
+                </form>
+                <br/>
+                <br/>
+                <form>
+                    <select class="custom-select">
+                        <option selected>Category</option>
+                        <c:forEach var="category" items="${categories}">
+                            <c:if test="${category.id == model.categoryId}">
+                                <option value="${category.id}" selected>${category.name}</option>
+                            </c:if>
+                            <c:if test="${category.id != model.categoryId}">
+                                <option value="${category.id}">${category.name}</option>
+                            </c:if>
+                        </c:forEach>
+                    </select>
+                </form>
             </div>
+            <br/>
+            <br/>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </div>
 

@@ -58,7 +58,7 @@
                                 <td>${item.title}</td>
                                 <td>${item.title}</td>
                                 <td>
-                                    <c:url value="/admin-new-list?type=edit"  var="editUrl">
+                                    <c:url value="/admin-new-list"  var="editUrl">
                                         <c:param name="type" value="edit"/>
                                         <c:param name="id" value="${item.id}"/>
                                     </c:url>
@@ -67,9 +67,13 @@
                                     </button>
                                 </td>
                                 <td>
+                                    <c:url value="/admin-new-list"  var="editUrl1">
+                                        <c:param name="type" value="edit"/>
+                                        <c:param name="id" value="${item.id}"/>
+                                    </c:url>
                                     <a flag="info"
                                        class="dt-button buttons-colvis btn btn-white btn-primary btn-bold" data-toggle="tooltip"
-                                       title="Them bai viet" href="<c:url value="/admin-new-list?type=edit"/> ">
+                                       title="Them bai viet" href="${editUrl1}">
                                     <span>
                                         <i class="fa fa-plus-circle bigger-110 purple"></i>
                                     </span>

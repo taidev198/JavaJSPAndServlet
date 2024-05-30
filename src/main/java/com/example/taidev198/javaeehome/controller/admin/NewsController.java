@@ -3,6 +3,8 @@ package com.example.taidev198.javaeehome.controller.admin;
 import com.example.taidev198.javaeehome.constant.SystemConstant;
 import com.example.taidev198.javaeehome.model.NewsModel;
 import com.example.taidev198.javaeehome.model.UserModel;
+import com.example.taidev198.javaeehome.service.CategoryService;
+import com.example.taidev198.javaeehome.service.ICategoryService;
 import com.example.taidev198.javaeehome.service.INewsService;
 import com.example.taidev198.javaeehome.service.NewsService;
 import com.example.taidev198.javaeehome.utils.FormUtils;
@@ -26,6 +28,7 @@ public class NewsController extends HttpServlet {
     //@Inject
     private INewsService newsService = new NewsService();
 
+    private ICategoryService categoryService = new CategoryService();
     public void init() {
         message = "nguyen thanh tai";
     }
@@ -55,17 +58,20 @@ public class NewsController extends HttpServlet {
             newsModel.setTotalPages((int) Math.ceil((double) newsModel.getTotalItems()/newsModel.getMaxPageItem()));
             viewUrl = "/views/admin/news/list.jsp";
         } else if (newsModel.getType().equals(SystemConstant.CHANGE_NEWS)) {
+            newsModel.setId(Long.valueOf(request.getParameter("id")));
             if (newsModel.getId()!=null) {//exists
                 newsModel = newsService.findOneById(newsModel.getId());
-
+//                newsModel.setTitle(request.getParameter("title"));
+//                newsModel.setContent(request.getParameter("content"));
             } else {//no exist
 
             }
-
+            request.setAttribute("categories", categoryService.findAllCategory() );
             viewUrl = "/views/admin/news/edit.jsp";
 
         }
         request.setAttribute(SystemConstant.MODEL, newsModel);
+        System.out.println(newsModel.getTitle());
         RequestDispatcher dispatcher = request.getRequestDispatcher(viewUrl);
         dispatcher.forward(request, response);
     }
