@@ -19,11 +19,11 @@
                 <div class="card-body">
                     DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the
                     <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-                    .
                 </div>
+
             </div>
             <table>
-            <form action="<c:url value="/admin-new-list?page=1&maxPageItem=2"/> " id = "formsubmit" method="get">
+            <form action="<c:url value="/admin-new-list?type=list&page=1&maxPageItem=2"/> " id = "formsubmit" method="get">
 
             <div class="card mb-4">
                 <div class="card-header">
@@ -58,9 +58,31 @@
                                 <td>${item.title}</td>
                                 <td>${item.title}</td>
                                 <td>
-                                    <button type="button" class="btn btn-default btn-sm">
+                                    <c:url value="/admin-new-list?type=edit"  var="editUrl">
+                                        <c:param name="type" value="edit"/>
+                                        <c:param name="id" value="${item.id}"/>
+                                    </c:url>
+                                    <button type="button" class="btn btn-default btn-sm" href="${editUrl}">
                                         <span class="glyphicon glyphicon-edit"></span> Edit
                                     </button>
+                                </td>
+                                <td>
+                                    <a flag="info"
+                                       class="dt-button buttons-colvis btn btn-white btn-primary btn-bold" data-toggle="tooltip"
+                                       title="Them bai viet" href="<c:url value="/admin-new-list?type=edit"/> ">
+                                    <span>
+                                        <i class="fa fa-plus-circle bigger-110 purple"></i>
+                                    </span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <button id="buttonDelete"
+                                            class="dt-button buttons-colvis btn btn-white btn-primary btn-bold" data-toggle="tooltip"
+                                            title="Xoa bai viet" href="<c:url value="/admin-new-list?type=edit"/> ">
+                                    <span>
+                                        <i class="fa fa-plus-circle bigger-110 purple"></i>
+                                    </span>
+                                </button>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -69,7 +91,7 @@
                     <ul class="pagination" id="pagination"></ul>
                     <input type="hidden" value="1" id="page" name="page" />
                     <input type="hidden" value="2" id="maxPageItem" name="maxPageItem" />
-                    <input type="hidden" value="LIST" id="type" name="type" />
+                    <input type="hidden" value="list" id="type" name="type" />
                 </div>
             </div>
             </form>

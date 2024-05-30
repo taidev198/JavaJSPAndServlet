@@ -75,13 +75,16 @@
                                 </nav>
                             </div>
                         </nav>
+                        <a href="<c:url value="/admin-new-list?type=list&page=1&maxPageItem-2"/> ">
+
+                        </a>
                     </div>
                     <div class="sb-sidenav-menu-heading">Addons</div>
                     <a class="nav-link" href="<c:url value="/template/admin/charts.html"/>">
                         <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                         Charts
                     </a>
-                    <a class="nav-link" href="<c:url value="/admin-new-list"/>">
+                    <a class="nav-link" href="<c:url value="/admin-new-list?type=list"/>">
                         <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                         Tables
                     </a>
@@ -134,6 +137,7 @@
                 if (currentPage !== page) {
                     $('#maxPageItem').val(limit);
                     $('#page').val(page);
+                    $('#type').val('list');
                     $('#formsubmit').submit(); //click to change form table
                 }
             }
