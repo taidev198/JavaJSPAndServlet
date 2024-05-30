@@ -65,6 +65,7 @@
                     <ul class="pagination" id="pagination"></ul>
                     <input type="hidden" value="1" id="page" name="page" />
                     <input type="hidden" value="2" id="maxPageItem" name="maxPageItem" />
+                    <input type="hidden" value="LIST" id="type" name="type" />
                 </div>
             </div>
             </form>

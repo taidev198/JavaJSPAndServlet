@@ -1,6 +1,8 @@
 package com.example.taidev198.javaeehome.model;
 
-import java.sql.Timestamp;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class NewsModel extends AbstractModel<NewsModel>{
 
@@ -58,5 +60,12 @@ public class NewsModel extends AbstractModel<NewsModel>{
         this.categoryId = categoryId;
     }
 
+    public Long[] getIds() throws SQLException {
+        Long[] ids = new Long[getListModels().size()];
+        for (int i = 0; i < getListModels().size(); i++) {
+            ids[i] = (getListModels().get(i).getId());
+        }
+        return ids;
+    }
 
 }

@@ -33,28 +33,41 @@ public class NewsController extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
 //        NewsModel newsModel = FormUtils.toModel(NewsModel.class, request);
+        String viewUrl = "";
         NewsModel newsModel = new NewsModel();
-        String pageStr = request.getParameter("page");
-        String maxPageStr = request.getParameter("maxPageItem");
-        if (pageStr == null || pageStr.equals("")) {
-            pageStr = "1";
+        newsModel.setType(request.getParameter("type"));
+        if (newsModel.getType().equals(SystemConstant.GET_LIST_NEWS)) {
+            String pageStr = request.getParameter("page");
+            String maxPageStr = request.getParameter("maxPageItem");
+            if (pageStr == null || pageStr.equals("")) {
+                pageStr = "1";
+            }
+            newsModel.setPage(Integer.parseInt(pageStr));
+            if (maxPageStr == null || maxPageStr.equals("")) {
+                maxPageStr = "2";
+            }
+            newsModel.setMaxPageItem(Integer.parseInt(maxPageStr));
+            int offset = (newsModel.getPage() - 1) * newsModel.getMaxPageItem();
+            List<NewsModel> newsList = newsService.findAll(offset,newsModel.getMaxPageItem());
+            newsModel.setListModels(newsList);
+            newsModel.setTotalItems(newsService.getTotalItems());
+            newsModel.setTotalPages((int) Math.ceil((double) newsModel.getTotalItems()/newsModel.getMaxPageItem()));
+            viewUrl = "/views/admin/news/list.jsp";
+            RequestDispatcher dispatcher = request.getRequestDispatcher(viewUrl);
+            dispatcher.forward(request, response);
+        } else if (newsModel.getType().equals(SystemConstant.CHANGE_NEWS)) {
+            if (newsModel.getId()!=null) {//exists
+                newsModel = newsService.findOneById(newsModel.getId());
+
+            } else {//no exist
+
+            }
+
+            viewUrl = "/views/admin/news/edit.jsp";
+
         }
-        newsModel.setPage(Integer.parseInt(pageStr));
-        System.out.println(newsModel.getPage() + "page");
-        if (maxPageStr == null || maxPageStr.equals("")) {
-            maxPageStr = "2";
-        }
-        newsModel.setMaxPageItem(Integer.parseInt(maxPageStr));
-        System.out.println(newsModel.getMaxPageItem() + "page");
-        int offset = (newsModel.getPage() - 1) * newsModel.getMaxPageItem();
-        List<NewsModel> newsList = newsService.findAll(offset,newsModel.getMaxPageItem());
-        System.out.println(offset +"offset");
-        System.out.println(newsList.size()+"size");
-        newsModel.setListModels(newsList);
-        newsModel.setTotalItems(newsService.getTotalItems());
-        newsModel.setTotalPages((int) Math.ceil((double) newsModel.getTotalItems()/newsModel.getMaxPageItem()));
         request.setAttribute(SystemConstant.MODEL, newsModel);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/admin/news/list.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher(viewUrl);
         dispatcher.forward(request, response);
     }
 

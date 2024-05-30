@@ -14,6 +14,9 @@ public abstract class AbstractModel<T> {
     private int maxPageItem ;
     private int totalPages;
     private int totalItems ;
+    //type = edit => them , sua xoa bai viet
+    //type = list => hien thi ds bai viet
+    private String type;
 
     public Timestamp getCreatedDate() {
         return createdDate;
@@ -82,5 +85,13 @@ public abstract class AbstractModel<T> {
     }
     public void setTotalItems(int totalItems) {
         this.totalItems = totalItems;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

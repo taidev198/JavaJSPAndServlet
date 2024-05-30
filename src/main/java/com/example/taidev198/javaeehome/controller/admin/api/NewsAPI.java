@@ -1,7 +1,10 @@
 package com.example.taidev198.javaeehome.controller.admin.api;
 
+import com.example.taidev198.javaeehome.constant.SystemConstant;
 import com.example.taidev198.javaeehome.model.NewsModel;
+import com.example.taidev198.javaeehome.model.UserModel;
 import com.example.taidev198.javaeehome.service.INewsService;
+import com.example.taidev198.javaeehome.utils.SessionUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -13,6 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpUtils;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class NewsAPI extends HttpServlet {
 
@@ -52,11 +56,22 @@ public class NewsAPI extends HttpServlet {
         NewsModel newsModel;
         Gson gson = new GsonBuilder().create();
         newsModel = gson.fromJson(request.getReader(), NewsModel.class);
-      // newsModel = newsService.delete(newsModel.getListModels().toArray());
+        try {
+            newsService.delete(newsModel.getIds());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         mapper.writeValue(response.getOutputStream(), newsModel);
     }
 
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        ObjectMapper mapper = new ObjectMapper();
+        request.setCharacterEncoding("utf-8");
+        response.setContentType("application/json");
+        NewsModel updatedNewsModel = new NewsModel();
+        Gson gson = new GsonBuilder().create();
+        updatedNewsModel.setModifiedBy(((UserModel)SessionUtils.getInstance().getValue(request, "USERMODEL")).getUserName());
+        updatedNewsModel = newsService.update(updatedNewsModel);
+        mapper.writeValue(response.getOutputStream(), updatedNewsModel);
     }
 }
