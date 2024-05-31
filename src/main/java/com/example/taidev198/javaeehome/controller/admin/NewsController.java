@@ -37,6 +37,9 @@ public class NewsController extends HttpServlet {
         response.setContentType("text/html");
 //        NewsModel newsModel = FormUtils.toModel(NewsModel.class, request);
         String viewUrl = "";
+        int offset = 0;
+        int page = 1;
+        int maxPageItem = 0;
         NewsModel newsModel = new NewsModel();
         newsModel.setType(request.getParameter("type"));
         if (newsModel.getType().equals(SystemConstant.GET_LIST_NEWS)) {
@@ -50,8 +53,10 @@ public class NewsController extends HttpServlet {
                 maxPageStr = "2";
             }
             newsModel.setMaxPageItem(Integer.parseInt(maxPageStr));
-            int offset = (newsModel.getPage() - 1) * newsModel.getMaxPageItem();
-            List<NewsModel> newsList = newsService.findAll(offset,newsModel.getMaxPageItem());
+            page = newsModel.getPage();
+             offset = (page - 1) * newsModel.getMaxPageItem();
+             maxPageItem = newsModel.getMaxPageItem();
+            List<NewsModel> newsList = newsService.findAll(offset,maxPageItem);
             newsModel.setListModels(newsList);
             System.out.println(newsList.size());
             newsModel.setTotalItems(newsService.getTotalItems());
@@ -61,11 +66,14 @@ public class NewsController extends HttpServlet {
             newsModel.setId(Long.valueOf(request.getParameter("id")));
             if (newsModel.getId()!=null) {//exists
                 newsModel = newsService.findOneById(newsModel.getId());
+
 //                newsModel.setTitle(request.getParameter("title"));
 //                newsModel.setContent(request.getParameter("content"));
             } else {//no exist
 
             }
+            newsModel.setPage(page);
+            newsModel.setMaxPageItem(maxPageItem);
             request.setAttribute("categories", categoryService.findAllCategory() );
             viewUrl = "/views/admin/news/edit.jsp";
 
@@ -77,6 +85,8 @@ public class NewsController extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
+        System.out.println("post successfully");
 
     }
 

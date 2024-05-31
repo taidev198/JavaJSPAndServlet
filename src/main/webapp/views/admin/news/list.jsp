@@ -61,15 +61,19 @@
                                     <c:url value="/admin-new-list"  var="editUrl">
                                         <c:param name="type" value="edit"/>
                                         <c:param name="id" value="${item.id}"/>
+                                        <c:param name="page" value="${model.page}"/>
+                                        <c:param name="maxPageItem" value="${model.maxPageItem}"/>
                                     </c:url>
-                                    <button type="button" class="btn btn-default btn-sm" href="${editUrl}">
+                                    <a  class="btn btn-default btn-sm" href="${editUrl}">
                                         <span class="glyphicon glyphicon-edit"></span> Edit
-                                    </button>
+                                    </a>
                                 </td>
                                 <td>
                                     <c:url value="/admin-new-list"  var="editUrl1">
                                         <c:param name="type" value="edit"/>
                                         <c:param name="id" value="${item.id}"/>
+                                        <c:param name="page" value="${item.page}"/>
+                                        <c:param name="maxPageItem" value="${item.maxPageItem}"/>
                                     </c:url>
                                     <a flag="info"
                                        class="dt-button buttons-colvis btn btn-white btn-primary btn-bold" data-toggle="tooltip"

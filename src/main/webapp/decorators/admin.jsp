@@ -16,7 +16,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Dashboard - SB Admin</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<%--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--%>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="<c:url value="/template/admin/css/styles.css"/>" rel="stylesheet" />
 <%--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--%>
@@ -110,6 +110,7 @@
         <%@include file="/common/admin/footer.jsp"%>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
@@ -145,6 +146,67 @@
             console.info(page + ' (from event listening)');
         });
     });
+
+        $('#submitBtn').click(function (e) {
+            // var content = $('#content').val();
+            // var title = $("#title").val();
+            // option 2: serialize data
+            var formData = $('#formSubmit').serializeArray();
+            var data = {};//js object
+            console.log('init')
+            console.log('click')
+            e.preventDefault();//prevent submit to url on browser instead of url of specific api
+            // $('#contentEdit').val(content);
+            // $('#titleEdit').val(title);
+            $.each(formData, function (index, v) {
+                data["" + v.name+""] = v.value;
+            })
+            var id = $('#categogryid');
+            if (id === ""){
+                console.log('add new');
+                addNew(data);
+            }
+            else {
+                console.log('update');
+                updateNew(data);
+            }
+
+           // $('#formSubmit').submit();
+        });
+
+
+    function addNew(data) {
+        //send data to server
+        $.ajax({
+            url: $('APIUrl'),
+            type: 'POST',
+            contentType:'application/json',
+            data:JSON.stringify(data),
+            dataType: 'json',//type of server response to client
+            success: function (result) {
+                console.log(result);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
+
+    function updateNew(data) {
+        $.ajax({
+            url: $('APIUrl'),
+            type: 'PUT',
+            contentType:'application/json',
+            data:JSON.stringify(data), //convert js object to json
+            dataType: 'json',
+            success: function (result) {
+                console.log(result);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
 </script>
 </body>
 </html>
