@@ -166,9 +166,9 @@
                 console.log(data[v.name]);
             })
             //console.log($(APIUrl).val() +'url');
-           // var id = $('#categogryid').val();
-           // console.log(id + 'id')
-            if (data["categoryId"] >= 0){
+            var id = $('#Cateid').val();
+            console.log(id + 'id')
+            if (id != ""){
                 console.log('update');
                 updateNew(data);
             }

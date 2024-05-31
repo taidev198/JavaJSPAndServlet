@@ -73,6 +73,7 @@
                  <button type="button" class="btn btn-primary" id="submitBtn" value="">Submit</button>
              </div>
                         <input type="hidden" value="${model.id}" id="id" name="id" />
+                        <input type="hidden" value="${model.categoryId}" id="Cateid" />
             </form>
         </div>
     </div>

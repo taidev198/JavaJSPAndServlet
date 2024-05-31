@@ -51,11 +51,11 @@ public class NewsAPI extends HttpServlet {
         response.setContentType("application/json");
         NewsModel newsModel;
         Gson gson = new GsonBuilder().create();
-        newsModel = gson.fromJson(request.getReader(), NewsModel.class);
+        newsModel = HttpUtils.of(request.getReader()).toModel(NewsModel.class);
         UserModel userModel = (UserModel)SessionUtils.getInstance().getValue(request, "USERMODEL");
         newsModel.setModifiedBy(userModel.getUserName());
         newsModel.setCreatedBy(userModel.getUserName());
-        newsModel = newsService.update(newsModel, userModel);
+        newsModel = newsService.save(newsModel);
         mapper.writeValue(response.getOutputStream(), newsModel);
     }
 
