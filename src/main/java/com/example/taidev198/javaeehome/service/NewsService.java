@@ -2,6 +2,7 @@ package com.example.taidev198.javaeehome.service;
 
 import com.example.taidev198.javaeehome.impl.NewsDAO;
 import com.example.taidev198.javaeehome.model.NewsModel;
+import com.example.taidev198.javaeehome.model.UserModel;
 import jakarta.inject.Inject;
 import java.sql.Timestamp;
 import java.util.List;
@@ -25,12 +26,14 @@ public class NewsService implements INewsService{
     }
 
     @Override
-    public NewsModel update(NewsModel newsModel) {
+    public NewsModel update(NewsModel newsModel, UserModel userModel) {
+        //finding full info of news by its it
         NewsModel oldNews = newsDAO.findOneById(newsModel.getId());
+        //set update
         newsModel.setCreatedDate(oldNews.getCreatedDate());
         newsModel.setCreatedBy(oldNews.getCreatedBy());
         newsModel.setModifiedDate(new Timestamp(System.currentTimeMillis()));
-        newsModel.setModifiedBy("");
+        newsModel.setModifiedBy(userModel.getUserName());
         newsDAO.update(newsModel);
         return newsDAO.findOneById(newsModel.getId());
     }

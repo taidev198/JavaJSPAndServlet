@@ -7,6 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/common/taglist.jsp" %>
+<c:url var="APIUrl" value="/api-admin-news"/>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -114,7 +116,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 <script src="<c:url value="/template/jquery.twbsPagination.js"/> " type="text/javascript" > </script>
 <script src="<c:url value="/template/jquery.twbsPagination.min.js"/> " type="text/javascript" ></script>
@@ -160,7 +162,9 @@
             // $('#titleEdit').val(title);
             $.each(formData, function (index, v) {
                 data["" + v.name+""] = v.value;
+                console.log(data[v.name]);
             })
+            //console.log($(APIUrl).val() +'url');
             var id = $('#categogryid');
             if (id === ""){
                 console.log('add new');
@@ -178,7 +182,7 @@
     function addNew(data) {
         //send data to server
         $.ajax({
-            url: $('APIUrl'),
+            url: '${APIUrl}',
             type: 'POST',
             contentType:'application/json',
             data:JSON.stringify(data),
@@ -194,7 +198,7 @@
 
     function updateNew(data) {
         $.ajax({
-            url: $('APIUrl'),
+            url: '${APIUrl}',
             type: 'PUT',
             contentType:'application/json',
             data:JSON.stringify(data), //convert js object to json

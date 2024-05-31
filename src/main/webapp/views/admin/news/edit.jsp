@@ -48,21 +48,21 @@
                 <br/>
                 <br/>
                 <div class="form-group">
-                    <select class="custom-select" name="categoryCode">
+                    <select class="custom-select" name="categoryId">
                         <option selected>Category</option>
                         <c:forEach var="category" items="${categories}">
 <%--                            option 1--%>
-<%--                            <c:if test="${category.id == model.categoryId}">--%>
-<%--                                <option value="${category.id}" selected>${category.name}</option>--%>
-<%--                            </c:if>--%>
-<%--                            <c:if test="${category.id != model.categoryId}">--%>
-<%--                                <option value="${category.id}">${category.name}</option>--%>
-<%--                            </c:if>--%>
+                            <c:if test="${category.id == model.categoryId}" >
+                                <option value="${category.id}" selected = 'selected' name="categoryId">${category.name}</option>
+                            </c:if>
+                            <c:if test="${category.id != model.categoryId}">
+                                <option value="${category.id}">${category.name}</option>
+                            </c:if>
 <%--                            option 2--%>
-                            <option value="${category.id}" <c:if test="${category.id == model.categoryId}">
-                                selected ="selected" </c:if>>
-                                ${category.name}
-                            </option>
+<%--                            <option value="${category.id}" <c:if test="${category.id == model.categoryId}">--%>
+<%--                                selected ="selected" </c:if>>--%>
+<%--                                ${category.name}--%>
+<%--                            </option>--%>
                         </c:forEach>
                     </select>
                 </div>
@@ -72,9 +72,9 @@
              <div class="form-group">
                  <button type="button" class="btn btn-primary" id="submitBtn" value="">Submit</button>
              </div>
-                        <input type="hidden" value="1" id="titleEdit" name="titleEdit" />
-                        <input type="hidden" value="1" id="contentEdit" name="contentEdit" />
-                        <input type="hidden" value="${model.categoryId}" id="categogryid" name="categogryid" />
+                        <input type="hidden" value="${model.id}" id="id" name="id" />
+<%--                        <input type="hidden" value="1" id="contentEdit" name="content" />--%>
+<%--                        <input type="hidden" value="${model.categoryId}" id="categogryid" name="categoryId" />--%>
             </form>
         </div>
     </div>

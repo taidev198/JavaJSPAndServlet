@@ -102,13 +102,11 @@ public class AbstractDAO<T> implements GenericDAO<T> {
                         connection.commit();//close execute statement update
 
                 } catch (SQLException e) {
-                        if (connection != null) {
-                                try {
-                                        connection.rollback();//call back again
-                                } catch (SQLException ex) {
-                                    throw new RuntimeException(ex);
-                                }
-                        }
+                    try {
+                        connection.rollback();//call back again
+                    } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
+                    }
 
                 }
                 finally {

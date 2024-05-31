@@ -4,6 +4,8 @@ import com.example.taidev198.javaeehome.constant.SystemConstant;
 import com.example.taidev198.javaeehome.model.NewsModel;
 import com.example.taidev198.javaeehome.model.UserModel;
 import com.example.taidev198.javaeehome.service.INewsService;
+import com.example.taidev198.javaeehome.service.NewsService;
+import com.example.taidev198.javaeehome.utils.HttpUtils;
 import com.example.taidev198.javaeehome.utils.SessionUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
@@ -14,7 +16,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpUtils;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -22,8 +23,8 @@ import java.sql.SQLException;
 @WebServlet(urlPatterns = {"/api-admin-news"})
 public class NewsAPI extends HttpServlet {
 
-    @Inject
-    private INewsService newsService;
+    //@Inject
+    private INewsService newsService = new NewsService();
 
     private static final long serialVersionUID = 1L;
 
@@ -50,8 +51,9 @@ public class NewsAPI extends HttpServlet {
         NewsModel newsModel;
         Gson gson = new GsonBuilder().create();
         newsModel = gson.fromJson(request.getReader(), NewsModel.class);
-        newsModel.setModifiedBy(((UserModel)SessionUtils.getInstance().getValue(request, "USERMODEL")).getUserName());
-        newsModel = newsService.update(newsModel);
+        UserModel userModel = (UserModel)SessionUtils.getInstance().getValue(request, "USERMODEL");
+        newsModel.setModifiedBy(userModel.getUserName());
+        newsModel = newsService.update(newsModel, userModel);
         mapper.writeValue(response.getOutputStream(), newsModel);
     }
 
@@ -75,10 +77,12 @@ public class NewsAPI extends HttpServlet {
         ObjectMapper mapper = new ObjectMapper();
         request.setCharacterEncoding("utf-8");
         response.setContentType("application/json");
-        NewsModel updatedNewsModel = new NewsModel();
+        UserModel userModel = (UserModel)SessionUtils.getInstance().getValue(request, "USERMODEL");
+        NewsModel updatedNewsModel = HttpUtils.of(request.getReader()).toModel(NewsModel.class);
         Gson gson = new GsonBuilder().create();
-        updatedNewsModel.setModifiedBy(((UserModel)SessionUtils.getInstance().getValue(request, "USERMODEL")).getUserName());
-        updatedNewsModel = newsService.update(updatedNewsModel);
+       // updatedNewsModel.setId(userModel.);
+        updatedNewsModel = newsService.update(updatedNewsModel, userModel);
+        //updatedNewsModel.setModifiedBy((userModel.getUserName()));//set who is modified
         mapper.writeValue(response.getOutputStream(), updatedNewsModel);
     }
 }
