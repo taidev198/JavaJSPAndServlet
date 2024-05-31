@@ -63,8 +63,9 @@ public class NewsController extends HttpServlet {
             newsModel.setTotalPages((int) Math.ceil((double) newsModel.getTotalItems()/newsModel.getMaxPageItem()));
             viewUrl = "/views/admin/news/list.jsp";
         } else if (newsModel.getType().equals(SystemConstant.CHANGE_NEWS)) {
-            newsModel.setId(Long.valueOf(request.getParameter("id")));
-            if (newsModel.getId()!=null) {//exists
+
+            if (newsModel.getId()!=null || !request.getParameter("id").isEmpty()) {//exists
+                newsModel.setId(Long.valueOf(request.getParameter("id")));
                 newsModel = newsService.findOneById(newsModel.getId());
 
 //                newsModel.setTitle(request.getParameter("title"));

@@ -72,8 +72,8 @@
                                     <c:url value="/admin-new-list"  var="editUrl1">
                                         <c:param name="type" value="edit"/>
                                         <c:param name="id" value="${item.id}"/>
-                                        <c:param name="page" value="${item.page}"/>
-                                        <c:param name="maxPageItem" value="${item.maxPageItem}"/>
+                                        <c:param name="page" value="${model.page}"/>
+                                        <c:param name="maxPageItem" value="${model.maxPageItem}"/>
                                     </c:url>
                                     <a flag="info"
                                        class="dt-button buttons-colvis btn btn-white btn-primary btn-bold" data-toggle="tooltip"
@@ -84,13 +84,19 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <button id="buttonDelete"
+                                    <c:url value="/admin-new-list"  var="addUrl">
+                                        <c:param name="type" value="edit"/>
+                                        <c:param name="id" value=""/>
+                                        <c:param name="page" value="${model.page}"/>
+                                        <c:param name="maxPageItem" value="${model.maxPageItem}"/>
+                                    </c:url>
+                                    <a id="buttonDelete"
                                             class="dt-button buttons-colvis btn btn-white btn-primary btn-bold" data-toggle="tooltip"
-                                            title="Xoa bai viet" href="<c:url value="/admin-new-list?type=edit"/> ">
+                                            title="Xoa bai viet" href="${addUrl}">
                                     <span>
                                         <i class="fa fa-plus-circle bigger-110 purple"></i>
                                     </span>
-                                </button>
+                                </a>
                                 </td>
                             </tr>
                         </c:forEach>

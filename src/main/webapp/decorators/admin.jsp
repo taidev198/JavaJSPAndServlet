@@ -155,6 +155,7 @@
             // option 2: serialize data
             var formData = $('#formSubmit').serializeArray();
             var data = {};//js object
+            var selectForm = $('#selectForm').find(':selected').val();
             console.log('init')
             console.log('click')
             e.preventDefault();//prevent submit to url on browser instead of url of specific api
@@ -165,14 +166,15 @@
                 console.log(data[v.name]);
             })
             //console.log($(APIUrl).val() +'url');
-            var id = $('#categogryid');
-            if (id === ""){
-                console.log('add new');
-                addNew(data);
-            }
-            else {
+           // var id = $('#categogryid').val();
+           // console.log(id + 'id')
+            if (data["categoryId"] >= 0){
                 console.log('update');
                 updateNew(data);
+            }
+            else {
+                console.log('add new');
+                addNew(data);
             }
 
            // $('#formSubmit').submit();

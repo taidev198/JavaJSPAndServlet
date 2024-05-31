@@ -38,6 +38,7 @@ public class NewsAPI extends HttpServlet {
         newsModel = gson.fromJson(request.getReader(), NewsModel.class);
         //get current user's data
         newsModel.setCreatedBy(((UserModel)SessionUtils.getInstance().getValue(request, "USERMODEL")).getUserName());
+        newsModel.setModifiedBy(((UserModel)SessionUtils.getInstance().getValue(request, "USERMODEL")).getUserName());
         newsModel = newsService.save(newsModel);
         mapper.writeValue(response.getOutputStream(), newsModel);
 
@@ -53,6 +54,7 @@ public class NewsAPI extends HttpServlet {
         newsModel = gson.fromJson(request.getReader(), NewsModel.class);
         UserModel userModel = (UserModel)SessionUtils.getInstance().getValue(request, "USERMODEL");
         newsModel.setModifiedBy(userModel.getUserName());
+        newsModel.setCreatedBy(userModel.getUserName());
         newsModel = newsService.update(newsModel, userModel);
         mapper.writeValue(response.getOutputStream(), newsModel);
     }

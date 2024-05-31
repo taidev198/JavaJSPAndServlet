@@ -48,8 +48,8 @@
                 <br/>
                 <br/>
                 <div class="form-group">
-                    <select class="custom-select" name="categoryId">
-                        <option selected>Category</option>
+                    <select class="custom-select" name="categoryId" id="selectForm">
+                        <option value="-1" selected>Category</option>
                         <c:forEach var="category" items="${categories}">
 <%--                            option 1--%>
                             <c:if test="${category.id == model.categoryId}" >
@@ -73,82 +73,10 @@
                  <button type="button" class="btn btn-primary" id="submitBtn" value="">Submit</button>
              </div>
                         <input type="hidden" value="${model.id}" id="id" name="id" />
-<%--                        <input type="hidden" value="1" id="contentEdit" name="content" />--%>
-<%--                        <input type="hidden" value="${model.categoryId}" id="categogryid" name="categoryId" />--%>
             </form>
         </div>
     </div>
 
 </div>
-<script type="text/javascript">
-    // console.log('tets')
-    // $('submitBtn').onclick(function (e) {
-    //     console.log('tets1')
-    // })
-    //     $('content').onclick(function (e){
-    //         console.log('test')
-    //     });
-    //
-    //     $('#submitBtn').onclick(function (e) {
-    //         // var content = $('#content').val();
-    //         // var title = $("#title").val();
-    //         // option 2: serialize data
-    //         var formData = $('#formSubmit').serializeArray();
-    //         var data = {};//js object
-    //         console.log('init')
-    //         console.log('click')
-    //         e.preventDefault();//prevent submit to url on browser instead of url of specific api
-    //         // $('#contentEdit').val(content);
-    //         // $('#titleEdit').val(title);
-    //         $.each(formData, function (index, v) {
-    //             data["" + v.name+""] = v.value;
-    //         })
-    //         var id = $('#categogryid');
-    //         if (id === ""){
-    //             console.log('add new');
-    //             addNew(data);
-    //         }
-    //         else {
-    //             console.log('add new');
-    //             updateNew(data);
-    //         }
-    //
-    //        // $('#formSubmit').submit();
-    //     });
-    //
-    //
-    // function addNew(data) {
-    //     //send data to server
-    //     $.ajax({
-    //         url: $('APIUrl'),
-    //         type: 'POST',
-    //         contentType:'application/json',
-    //         data:JSON.stringify(data),
-    //         dataType: 'json',//type of server response to client
-    //         success: function (result) {
-    //             console.log(result);
-    //         },
-    //         error: function (error) {
-    //             console.log(error);
-    //         }
-    //     });
-    // }
-    //
-    // function updateNew(data) {
-    //     $.ajax({
-    //         url: $('APIUrl'),
-    //         type: 'PUT',
-    //         contentType:'application/json',
-    //         data:JSON.stringify(data), //convert js object to json
-    //         dataType: 'json',
-    //         success: function (result) {
-    //             console.log(result);
-    //         },
-    //         error: function (error) {
-    //             console.log(error);
-    //         }
-    //     });
-    // }
-</script>
 </body>
 </html>
