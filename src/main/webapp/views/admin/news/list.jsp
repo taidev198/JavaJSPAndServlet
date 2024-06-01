@@ -7,6 +7,9 @@
 --%>
 <%@include file="/common/taglist.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<c:url var="APIUrl" value="/api-admin-news"/>
+<c:url var="newUrl" value="/admin-new-list"/>
+
 <%--get method will go int doget method controller--%>
 <main>
         <div class="container-fluid px-4">
@@ -34,6 +37,7 @@
                     <table id="datatablesSimple">
                         <thead>
                         <tr>
+                            <th><input type="checkbox" id="deleteAll"></input></th>
                             <th>Name</th>
                             <th>Position</th>
                             <th>Office</th>
@@ -53,6 +57,7 @@
                         <tbody>
                         <c:forEach var="item" items="${model.listModels}" >
                             <tr>
+                                <th><input type="checkbox" id="checkbox_${item.id}" value="${item.id}"></input></th>
                                 <td>${item.content}</td>
                                 <td>${item.content}</td>
                                 <td>${item.title}</td>
@@ -69,19 +74,22 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <c:url value="/admin-new-list"  var="editUrl1">
-                                        <c:param name="type" value="edit"/>
-                                        <c:param name="id" value="${item.id}"/>
-                                        <c:param name="page" value="${model.page}"/>
-                                        <c:param name="maxPageItem" value="${model.maxPageItem}"/>
-                                    </c:url>
-                                    <a flag="info"
-                                       class="dt-button buttons-colvis btn btn-white btn-primary btn-bold" data-toggle="tooltip"
-                                       title="Them bai viet" href="${editUrl1}">
+<%--                                    <button id="deleteBtn" type="button">--%>
+<%--                                        <c:url value="/admin-new-list"  var="editUrl1">--%>
+<%--                                            <c:param name="type" value="edit"/>--%>
+<%--                                            <c:param name="id" value="${item.id}"/>--%>
+<%--                                            <c:param name="page" value="${model.page}"/>--%>
+<%--                                            <c:param name="maxPageItem" value="${model.maxPageItem}"/>--%>
+<%--                                        </c:url>--%>
+                                        <button flag="info" id="deleteBtn" type="button"
+                                           class="dt-button buttons-colvis btn btn-white btn-primary btn-bold" data-toggle="tooltip"
+                                           title="Them bai viet" >
                                     <span>
                                         <i class="fa fa-plus-circle bigger-110 purple"></i>
                                     </span>
-                                    </a>
+                                        </button>
+<%--                                    </button>--%>
+
                                 </td>
                                 <td>
                                     <c:url value="/admin-new-list"  var="addUrl">

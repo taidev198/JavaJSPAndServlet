@@ -128,6 +128,7 @@
 <script src="<c:url value="/template/admin/js/simple-datatables.min.js"/>" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
+    //list.jsp file
     var currentPage = ${model.page};
     var totalPages = ${model.totalPages};
     var limit = ${model.maxPageItem};
@@ -148,7 +149,19 @@
             console.info(page + ' (from event listening)');
         });
     });
+// delete function
+    $('#deleteBtn').click(function (e) {
 
+    var data = {};
+    //get row is checked and add to array
+    var ids = $('tbody input[type=checkbox]:checked').map(function () {
+        return $(this).val()
+    }).get();
+    data['ids'] = ids;
+    deleteNews(data);
+    });
+
+    //edit.jsp
         $('#submitBtn').click(function (e) {
             // var content = $('#content').val();
             // var title = $("#title").val();
@@ -213,6 +226,21 @@
             }
         });
     }
+        function deleteNews(data) {
+            $.ajax({
+                url: '${APIUrl}',
+                type: 'DELETE',
+                contentType:'application/json',
+                data:JSON.stringify(data), //convert js object to json
+                // dataType: 'json', //NOT IS json because data is array
+                success: function (result) {
+                    window.location.href = "${newUrl}?type=list&maxPageItem=" + limit+ "&page=" + currentPage;
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        }
 </script>
 </body>
 </html>

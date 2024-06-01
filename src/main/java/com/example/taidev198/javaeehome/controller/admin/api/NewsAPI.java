@@ -16,9 +16,18 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
+import static com.example.taidev198.javaeehome.utils.HttpUtils.stringRequestToArray;
 
 @WebServlet(urlPatterns = {"/api-admin-news"})
 public class NewsAPI extends HttpServlet {
@@ -60,18 +69,13 @@ public class NewsAPI extends HttpServlet {
     }
 
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("onDelete");
         ObjectMapper mapper = new ObjectMapper();
         request.setCharacterEncoding("utf-8");
         response.setContentType("application/json");
-        NewsModel newsModel;
-        Gson gson = new GsonBuilder().create();
-        newsModel = gson.fromJson(request.getReader(), NewsModel.class);
-        try {
-            newsService.delete(newsModel.getIds());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        mapper.writeValue(response.getOutputStream(), newsModel);
+        //get string jsonObject contains id list and convert to long array
+        newsService.delete(HttpUtils.stringRequestToArray(HttpUtils.of(request.getReader()).getValue()));
+        mapper.writeValue(response.getOutputStream(), "{}");
     }
 
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -87,4 +91,5 @@ public class NewsAPI extends HttpServlet {
         //updatedNewsModel.setModifiedBy((userModel.getUserName()));//set who is modified
         mapper.writeValue(response.getOutputStream(), updatedNewsModel);
     }
+
 }
